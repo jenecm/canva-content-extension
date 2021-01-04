@@ -26,20 +26,6 @@ def lambda_handler(event, context):
     return {
         "statusCode": 200,
         "body": json.dumps({
-            "type": 'SUCCESS',
-            "resources": [
-                {
-                    "type": 'IMAGE',
-                    "id": '123456',
-                    "name": 'Flowers',
-                    "thumbnail": {
-                        "url": 'https://picsum.photos/id/152/500/333',
-                        "width": 500,
-                        "height": 333,
-                    },
-                    "url": 'https://picsum.photos/id/152/3888/2592',
-                    "contentType": 'image/jpeg',
-                },
-            ],
+           # Add the json object code to return an image resource here
         }),
     }
