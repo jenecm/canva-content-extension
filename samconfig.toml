@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "canva-content-extension"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-qsr95fhv4izj"
+s3_prefix = "canva-content-extension"
+region = "ap-southeast-2"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"

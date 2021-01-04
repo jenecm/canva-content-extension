@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  canva-content-extension
+
+  Sample SAM Template for canva-content-extension
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  SupplyImagesFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: image_resources/
+      Handler: images.lambda_handler
+      Runtime: python3.8
+      Events:
+        SupplyImages:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /content/resources/find
+            Method: post
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  SupplyImagesApi:
+    Description: "API Gateway endpoint base URL for Prod stage for Supply Images function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"
+  SupplyImagesFunction:
+    Description: "Supply Images Lambda Function ARN"
+    Value: !GetAtt SupplyImagesFunction.Arn
+  SupplyImagesFunctionIamRole:
+    Description: "Implicit IAM Role created for Supply Images function"
+    Value: !GetAtt SupplyImagesFunctionRole.Arn
